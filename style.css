@@ -69,6 +69,7 @@ button {
     background-color: blue;
     color: white;
     font-size: 25px;
+    border-color: grey;
 }
 
 #clearAll, #equals {
