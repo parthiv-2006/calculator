@@ -41,7 +41,8 @@ function appendNumber (number) {
         display.textContent = number
     }
     else {
-        display.textContent += number
+        if (display.textContent.length < 10){
+            display.textContent += number}
     }
 }
 
