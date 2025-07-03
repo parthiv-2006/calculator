@@ -22,7 +22,28 @@ const decimalButton = document.querySelector('#decimal')
 const equalButton = document.querySelector('#equals')
 const display = document.querySelector('.display')
 
-acButton.addEventListener('click', () => { display.textContent = 0; });
+acButton.addEventListener('click', () => { display.textContent = '0'; });
+oneButton.addEventListener('click', () => appendNumber('1'));
+twoButton.addEventListener('click', () => appendNumber('2'));
+threeButton.addEventListener('click', () => appendNumber('3'));
+fourButton.addEventListener('click', () => appendNumber('4'));
+fiveButton.addEventListener('click', () => appendNumber('5'));
+sixButton.addEventListener('click', () => appendNumber('6'));
+sevenButton.addEventListener('click', () => appendNumber('7'));
+eightButton.addEventListener('click', () => appendNumber('8'));
+nineButton.addEventListener('click', () => appendNumber('9'));
+zeroButton.addEventListener('click', () => appendNumber('0'));
+
+display.textContent = '0'
+
+function appendNumber (number) {
+    if (display.textContent === '0') {
+        display.textContent = number
+    }
+    else {
+        display.textContent += number
+    }
+}
 
 
 function add(value, operationalValue) {
