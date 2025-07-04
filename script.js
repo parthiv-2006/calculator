@@ -29,7 +29,9 @@ sevenButton.addEventListener('click', () => appendNumber('7'));
 eightButton.addEventListener('click', () => appendNumber('8'));
 nineButton.addEventListener('click', () => appendNumber('9'));
 zeroButton.addEventListener('click', () => appendNumber('0'));
-decimalButton.addEventListener('click', () => appendNumber('.'));
+decimalButton.addEventListener('click', () => 
+    {if (!display.textContent.includes('.')) 
+        {appendNumber('.')}});
 
 display.textContent = '0'
 
@@ -88,7 +90,7 @@ function evaluate() {
         return
     }
     num2 = display.textContent
-    display.textContent = operate(num1, operator, num2)
+    display.textContent = Math.round((operate(num1, operator, num2)) * 10000) / 10000
     operator = null
 }
 
