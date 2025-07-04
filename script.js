@@ -1,7 +1,3 @@
-let num1;
-let num2;
-let operation;
-
 const zeroButton = document.querySelector('#zero')
 const oneButton = document.querySelector('#one')
 const twoButton = document.querySelector('#two')
@@ -22,7 +18,7 @@ const decimalButton = document.querySelector('#decimal')
 const equalButton = document.querySelector('#equals')
 const display = document.querySelector('.display')
 
-acButton.addEventListener('click', () => { display.textContent = '0'; });
+
 oneButton.addEventListener('click', () => appendNumber('1'));
 twoButton.addEventListener('click', () => appendNumber('2'));
 threeButton.addEventListener('click', () => appendNumber('3'));
@@ -35,6 +31,65 @@ nineButton.addEventListener('click', () => appendNumber('9'));
 zeroButton.addEventListener('click', () => appendNumber('0'));
 
 display.textContent = '0'
+
+
+let num1 = ''
+let operator = null
+let num2 = ''
+
+equalButton.addEventListener('click', () => evaluate())
+acButton.addEventListener('click', () => clear())
+delButton.addEventListener('click', () => {
+    if (display.textContent.length === 1) {
+        display.textContent = '0'
+    }
+    else {
+        display.textContent = display.textContent.slice(0,-1)}
+})
+
+addButton.addEventListener('click', () => {
+    setOperation('add')
+    resetScreen()})
+subButton.addEventListener('click', () => {setOperation('subtract') 
+    resetScreen()})
+mulButton.addEventListener('click', () => {setOperation('multiply')
+    resetScreen()
+})
+divButton.addEventListener('click', () => {setOperation('divide')
+    resetScreen()
+})
+
+function clear() {
+    operator = null
+    num1 = ''
+    num2 = ''
+    display.textContent = '0'
+}
+
+function resetScreen() {
+    display.textContent = ''
+}
+
+function setOperation (operation) {
+    if (operation !== null) {
+        evaluate()
+    }
+    num1 = display.textContent
+    operator = operation
+}
+
+function evaluate() {
+    if (operator === null) {return}
+
+    else if (operator === 'divide' && display.textContent === '0') {
+        alert("You cannot divide by Zero")
+        clear()
+        return
+    }
+    num2 = display.textContent
+    display.textContent = operate(num1, operator, num2)
+    operator = null
+}
 
 function appendNumber (number) {
     if (display.textContent === '0') {
@@ -64,5 +119,18 @@ function divide(value, operationalValue) {
 }
 
 function operate(num1, operation, num2) {
-    
+    num1 = parseInt(num1)
+    num2 = parseInt(num2)
+    if (operation === 'add') {
+        return add(num1, num2)
+    }
+    else if (operation === 'subtract') {
+        return subtract(num1, num2)
+    }
+    else if (operation === 'multiply') {
+        return multiply(num1, num2)
+    }
+    else if (operation === 'divide') {
+        return divide(num1, num2)
+    }
 }
