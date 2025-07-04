@@ -29,6 +29,7 @@ sevenButton.addEventListener('click', () => appendNumber('7'));
 eightButton.addEventListener('click', () => appendNumber('8'));
 nineButton.addEventListener('click', () => appendNumber('9'));
 zeroButton.addEventListener('click', () => appendNumber('0'));
+decimalButton.addEventListener('click', () => appendNumber('.'));
 
 display.textContent = '0'
 
@@ -81,7 +82,7 @@ function setOperation (operation) {
 function evaluate() {
     if (operator === null) {return}
 
-    else if (operator === 'divide' && display.textContent === '0') {
+    else if (operator === 'divide' && parseFloat(display.textContent) === 0.0) {
         alert("You cannot divide by Zero")
         clear()
         return
@@ -119,8 +120,8 @@ function divide(value, operationalValue) {
 }
 
 function operate(num1, operation, num2) {
-    num1 = parseInt(num1)
-    num2 = parseInt(num2)
+    num1 = parseFloat(num1)
+    num2 = parseFloat(num2)
     if (operation === 'add') {
         return add(num1, num2)
     }
